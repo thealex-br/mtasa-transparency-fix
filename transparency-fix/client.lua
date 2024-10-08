@@ -83,7 +83,7 @@ local function onStart()
 	}
 
 	local fixShader = dxCreateShader(
-		"technique alphafix { pass P0 {zWriteEnable = true; AlphaRef = 192;} pass P1 {zWriteEnable = false; AlphaRef = 1; DestBlend = InvSrcAlpha;} }",
+		"technique alphafix { pass P0 {CullMode = None; zWriteEnable = true; AlphaRef = 192;} pass P1 {zWriteEnable = false; AlphaRef = 1; DestBlend = InvSrcAlpha;} }",
 		-1,
 		0,
 		false,
