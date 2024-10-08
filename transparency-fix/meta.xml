@@ -1,0 +1,5 @@
+<meta>
+    <autostart>true</autostart>
+    <info name="transparency fix" author="thealex-br" type="script" />
+    <script src="client.lua" type="client" />
+</meta>
