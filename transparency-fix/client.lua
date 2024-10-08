@@ -75,7 +75,6 @@ local function onStart()
 		"sm_des_bush*",
 		"sm_minipalm*",
 		"oakleaf*",
-		"custom_roadsign_text",
 		"pinebranch*",
 		"pinelo128",
 		"spruce*",
