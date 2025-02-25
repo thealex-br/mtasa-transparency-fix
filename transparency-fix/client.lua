@@ -1,3 +1,10 @@
+local theShader = [[
+	technique alphafix {
+		pass P0 {AlphaRef = 148; CullMode = None;}
+		pass P1 {AlphaRef = 0; zWriteEnable = false;}
+	}
+]]
+
 local function onStart()
 	local textures = {
 		"newtree*",
@@ -12,6 +19,7 @@ local function onStart()
 		"*plants*",
 		"foliage256",
 		"bevflower*",
+		"ws_woodyhedge",
 		"yuka256",
 		"oak2b",
 		"sm_josh_leaf",
@@ -20,6 +28,8 @@ local function onStart()
 		"*fence*",
 		"*fencing*",
 		"*graf*",
+		"ws_railing1",
+		"CJ_PLANT",
 		"wattsstax4_lae",
 		"wattsstax1_lae",
 		"*telewires*",
@@ -39,11 +49,15 @@ local function onStart()
 		"des_byframe1",
 		"sw_olddrum1",
 		"bonyrd_frame1",
+		"crackedgroundb",
+		"ruffroadlas",
+		"clothline*",
 
 		"frame_la",
 		"billdetaily",
 		"aroofbit91",
 		"antenna1",
+		"sjmbarblas",
 
 		"plant*256",
 		"veg_largefurs*",
@@ -66,6 +80,7 @@ local function onStart()
 		"cedarbare",
 		"locustbra",
 		"starflower*",
+		"starhedge*",
 		"hazelbranch",
 		"elmdead",
 		"weeelm",
@@ -82,16 +97,13 @@ local function onStart()
 		"veg_leaf*",
 	}
 
-	local fixShader = dxCreateShader(
-		"technique alphafix { pass P0 {CullMode = None; zWriteEnable = true; AlphaRef = 192;} pass P1 {zWriteEnable = false; AlphaRef = 1; DestBlend = InvSrcAlpha;} }",
-		-1,
-		0,
-		false,
-		"world,object"
-	)
-
+	local fixShader = dxCreateShader(theShader, -1, 0, false, "world,object")
 	for i, texture in ipairs(textures) do
 		engineApplyShaderToWorldTexture(fixShader, texture)
 	end
+
+	local fixShaderVehicle = dxCreateShader(theShader, -1, 0, false, "vehicle")
+	engineApplyShaderToWorldTexture(fixShaderVehicle, "vehiclesteering128")
+	engineApplyShaderToWorldTexture(fixShaderVehicle, "vehicledash32")
 end
 addEventHandler("onClientResourceStart", resourceRoot, onStart)
